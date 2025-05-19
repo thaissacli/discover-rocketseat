@@ -1,0 +1,172 @@
+*{
+    margin: 0; /*Remove a margem padrão do navegador*/
+    padding: 0; /*Remove o preenchimento padrão do navegador*/
+    box-sizing: border-box; /*Faz com que o padding e a borda sejam incluídos na largura e altura total do elemento*/
+}
+
+:root {
+    --theme-color: white;
+    --background: url(./assets/bg-mobile.jpg);
+    --border-color: rgba(255, 255, 255, 0.5);
+    --background-links: rgba(255, 255, 255, 0.05);
+    --background-links-hover: rgba(255, 255, 255, 0.1);
+    --switch-bg-url: url(/assets/sun.svg);
+}
+
+.light-theme{
+    --theme-color: black; 
+    --background: url(./assets/bg-mobile-light.jpg); 
+    --border-color: rgba(0, 0, 0, 0.5);
+    --background-links: rgba(0, 0, 0, 0.05);
+    --background-links-hover: rgba(0, 0, 0, 0.1);
+    --switch-bg-url: url(/assets/moon-stars.svg);
+}
+
+body{
+    /*
+    background-image: url(./assets/bg-mobile.jpg);
+    background-repeat: no-repeat;
+    background-position:top center;
+    background-size: cover;
+    */
+
+    /* background: color image repeat position/size (shorthand)*/
+    background: var(--background) no-repeat top center/cover;
+}
+
+body *{ 
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    color: var(--theme-color);
+}
+
+#container{
+    /*border: 1px solid red;*/ /*Apenas para visualização*/
+    width: 360px; /*pixels é uma unidade de medida fixa*/
+    /* margin: auto; responsável por pegar o espaço vazio da direita e dividir igualmente entre os lados do container*/
+    margin: 56px auto 0px;
+    padding: 0 24px;
+}
+
+#profile{
+    text-align: center;
+    padding: 24px;
+}
+
+#profile img{ /*expessificidade de 101%*/
+    width: 112px; /*geralmente não é preciso por a altura, pois ela geralmente se forma/é moldada pela quantidade de conteúdos de dentro da caixa. É uma boa prática que a altura seja mais fluida*/
+    /*display: none; O Display é o responsável pela visualização do conteúdo selecionado*/
+    /*margin: auto; Não funciona pois em elementos inline não existe o conceito de margem, para resolver esse problema e conseguirmos centralizar o conteúdo podemos forçar um display block ou aplicar no elemento pai o text-align: center;*/
+    margin-bottom: 8px; /*Espaçamento entre o elemento e o próximo elemento*/
+}
+
+#profile p{
+    font-weight: 500;
+    line-height: 24px; /*Altura da linha*/
+}
+
+#switch{
+    /*border: 1px solid red;*/
+    position: relative; /*delimita o espaço de trafego do elemento filho que está com position absolute para apenas o espaço de dentro do pai*/
+    width: 64px;
+    margin: 4px auto; /*Responsável por centralizar o elemento*/
+}
+
+#switch button{
+    width: 32px;
+    height: 32px;
+    background: white var(--switch-bg-url) no-repeat center;
+    border: none;
+    border-radius: 50%;
+    position: absolute; /*permite que o elemento vá para o outra camada-lier-andar / permite a sobreposição de elementos*/
+    z-index: 1; /*Propriedade do position:absolute para a mudança de andar do elemento*/
+    top: 50%;
+    transform: translateY(-50%); /*Estratégia junto com a linha 84 para deixar o elemento centralizado verticalmente*/
+    left: 1;
+}
+
+.light-theme #switch button{
+    right: 0;
+    left: initial;
+}
+
+#switch span{
+    display: block;
+    width: 64px;
+    height: 24px;
+    background: var(--background-links-hover);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 9999px;
+}
+
+#links{
+    padding: 24px;
+}
+
+ul{
+    list-style: none;
+    display: flex; /*Faz com que todos os elementos dentro da caixa fiquem um ao lado do outro*/
+    /*flex-direction: row; DEFAULT Faz com que os elementos dentro da caixa fiquem um embaixo do outro*/
+    /*É preferível utilizar o ajuste flexível para espaçar os links do que uma margin ou qualquer tipo de ajuste estático, pois aí preservamos a responsividade do site*/
+    flex-direction: column;
+    gap: 16px; /*Espaçamento entre os elementos*/
+}
+
+ul li a{ /*Para estilizar o botão foi preferível aplicar as propriedades no link trabalhado do que no li - acredito que pelo fato de ser mais expecífico*/
+    display: flex; /*O display flex cria uma linha imaginária chamada de eixo principal ou MAIN e é nessa linha que o justify e o align se regem*/
+    padding: 16px 24px; 
+
+    justify-content: center;
+    align-items: center;
+
+    background: var(--background-links);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-weight: 500;
+
+    transition: background 0.3s;
+}
+
+/*Pseudo-selector*/
+ul li a:hover{
+    background: var(--background-links-hover);
+    border: 1px solid var(--theme-color);
+}
+
+/*Social Links*/
+#social-links{
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+}
+
+#social-links a{
+    padding: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+#social-links a:hover{
+    background: var(--background-links-hover);
+}
+
+footer{
+    padding: 24px;
+    text-align: center; /*Responsável por centralizar o texto - text-align é usada principalmente para alinhar texto e elementos inline ,como <span>, <a>, <img>, dentro de um elemento bloco ,como <div>, <section>, <footer>.*/
+    font-size: 14px;
+}
+
+/*Dica de CSS: caniuse.com para saber se uma propriedade esta defazada ou é boa para se utilizar*/
