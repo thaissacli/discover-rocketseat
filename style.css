@@ -44,7 +44,9 @@ body *{
 
 #container{
     /*border: 1px solid red;*/ /*Apenas para visualização*/
-    width: 360px; /*pixels é uma unidade de medida fixa*/
+    /*width: 360px; pixels é uma unidade de medida fixa*/
+    width: 100%; /*Responsável por deixar o container responsivo*/
+    max-width: 588px;
     /* margin: auto; responsável por pegar o espaço vazio da direita e dividir igualmente entre os lados do container*/
     margin: 56px auto 0px;
     padding: 0 24px;
