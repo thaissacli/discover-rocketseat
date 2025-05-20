@@ -32,6 +32,7 @@ body{
 
     /* background: color image repeat position/size (shorthand)*/
     background: var(--background) no-repeat top center/cover;
+    height: 100vh; /*(ViewPort Height) Responsável por deixar o background ocupando toda a tela*/
 }
 
 body *{ 
@@ -169,6 +170,18 @@ footer{
     padding: 24px;
     text-align: center; /*Responsável por centralizar o texto - text-align é usada principalmente para alinhar texto e elementos inline ,como <span>, <a>, <img>, dentro de um elemento bloco ,como <div>, <section>, <footer>.*/
     font-size: 14px;
+}
+
+/*Media Queries*/    
+/*<meta name="viewport" content="width=device-width, initial-scale=1.0"> - O que possibilita o uso de MediaQueries no projeto*/
+@media (min-width: 700px){
+    :root{
+        --background: url(./assets/bg-desktop.jpg);
+    }
+
+    .light-theme{
+        --background: url(./assets/bg-desktop-light.jpg);
+    }
 }
 
 /*Dica de CSS: caniuse.com para saber se uma propriedade esta defazada ou é boa para se utilizar*/
