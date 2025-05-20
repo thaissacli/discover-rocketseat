@@ -86,13 +86,19 @@ body *{
     position: absolute; /*permite que o elemento vá para o outra camada-lier-andar / permite a sobreposição de elementos*/
     z-index: 1; /*Propriedade do position:absolute para a mudança de andar do elemento*/
     top: 50%;
+    left: 0;
     transform: translateY(-50%); /*Estratégia junto com a linha 84 para deixar o elemento centralizado verticalmente*/
-    left: 1;
+    animation: slide-back 0.2s;
+    transition: 0.2s;
+}
+
+#switch button:hover{
+    outline: 8px solid var(--background-links-hover); /*outline é uma borda que não ocupa espaço, diferente da border que ocupa espaço*/
 }
 
 .light-theme #switch button{
-    right: 0;
-    left: initial;
+    animation: slide-in 0.2s forwards; /*A animação é aplicada no elemento que está com position absolute*/
+    /*O forwards permite a permanencia das alterações apenas no estado em que foi inserido, por isso fora da classe light-theme o left continua sendo o defalt ou seja 0*/
 }
 
 #switch span{
@@ -181,6 +187,23 @@ footer{
 
     .light-theme{
         --background: url(./assets/bg-desktop-light.jpg);
+    }
+}
+
+/*Animation*/
+@keyframes slide-in{
+    from{
+        left: 0;
+    } to {
+        left: 50%;
+    }
+}
+
+@keyframes slide-back{
+    from{
+        left:50%;
+    } to {
+        left: 0;
     }
 }
 
